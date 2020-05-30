@@ -2,7 +2,7 @@
   <div class="national">
     <div class="card">
       <div class="card-header">
-        <h1>Cifras totales al {{nation.day}}</h1>
+        <h1>Cifras totales en Chile al {{nation.day}}</h1>
       </div>
       <div class="card-body">
         <p>Total de contagios: <span class="highligth">{{formatConfirmed}}</span></p>
@@ -19,7 +19,7 @@ export default {
   name: "Nation",
   data () {
     return {
-      nation: null
+      nation: []
     }
   },
   mounted () {
