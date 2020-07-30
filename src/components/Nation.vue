@@ -13,28 +13,34 @@
 </template>
 
 <script>
-import axios from "axios";
+import api from "../api";
 
 export default {
   name: "Nation",
   data () {
     return {
-      nation: []
+      nation: null
     }
   },
-  mounted () {
-    axios.get("https://chile-coronapi.herokuapp.com/api/v3/latest/nation")
-      .then(response => (this.nation = response.data))
+  created(){
+    this.cargarData()
+  },
+  methods:{
+    cargarData(){
+      api.getNation().then(data => {
+        this.nation = data
+      });
+    }
   },
   computed:{
     percentage: function() {
-      return Math.round((this.nation.deaths / this.nation.confirmed) * 100)
+        return Math.round((this.nation.deaths / this.nation.confirmed) * 100)
     },
     formatConfirmed: function() { 
-      return Intl.NumberFormat("es-CL").format(this.nation.confirmed)
+        return Intl.NumberFormat("es-CL").format(this.nation.confirmed)
     },
     formatDeaths: function() { 
-      return Intl.NumberFormat("es-CL").format(this.nation.deaths)
+        return Intl.NumberFormat("es-CL").format(this.nation.deaths)
     }
   }
 }
