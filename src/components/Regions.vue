@@ -18,22 +18,24 @@
 </template>
 
 <script>
-import axios from "axios";
+import api from "../api";
 import {mapState} from 'vuex';
 
 export default {
   name: "Regions",
-  computed:{
-    ...mapState(['regions'])
-  },
   data(){
     return{
       dataRegion: null
     }
   },
+  computed:{
+    ...mapState(['regions'])
+  },
   methods:{
     datosRegion(id){
-      axios.get("https://chile-coronapi.herokuapp.com/api/v3/latest/regions?id="+id).then(response => (this.dataRegion = response.data))
+      api.getRegion(id).then(data => {
+        this.dataRegion = data
+      });
     }
   }
 }

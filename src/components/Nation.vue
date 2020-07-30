@@ -1,6 +1,6 @@
 <template>
   <div class="national">
-    <div class="card">
+    <div v-if="nation" class="card">
       <div class="card-header">
         <h1>Cifras totales en Chile al {{nation.day}}</h1>
       </div>
